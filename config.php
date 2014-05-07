@@ -12,14 +12,14 @@
 $db_config_used = "local_mysql";
 
 $db_config["local_mysql"]["host"] = "localhost";
-$db_config["local_mysql"]["user"] = "baiken_fwa";
-$db_config["local_mysql"]["pwd"] = "fwa1";
+$db_config["local_mysql"]["user"] = "test_fwa";
+$db_config["local_mysql"]["pwd"] = "fwa1_6231One@";
 $db_config["local_mysql"]["default_db_name"] = "baiken_fwa";
 
 $db_config["remote_mysql"]["host"] = "";
-$db_config["remote_mysql"]["user"] = "baiken_fwa";
-$db_config["remote_mysql"]["pwd"] = "fwa1";
-$db_config["remote_mysql"]["default_db_name"] = "baiken_fwa";
+$db_config["remote_mysql"]["user"] = "";
+$db_config["remote_mysql"]["pwd"] = "";
+$db_config["remote_mysql"]["default_db_name"] = "";
 /*End of Configuration section*/
 
 //get the array with the database config to use

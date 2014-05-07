@@ -1,0 +1,328 @@
+
+
+/* F
+
+-----------------------------------------------------------------------------------------------------------*/
+
+
+
+.ui-bar-f {
+
+	border: 1px solid 		#2A2A2A /*{a-bar-border}*/;
+
+	background: 			#111111 /*{a-bar-background-color}*/;
+
+	color: 					#ffffff /*{a-bar-color}*/;
+
+	font-weight: bold;
+
+	text-shadow: 0 /*{a-bar-shadow-x}*/ 0 /*{a-bar-shadow-y}*/ 1px /*{a-bar-shadow-radius}*/ #000000 /*{a-bar-shadow-color}*/;
+
+
+
+    background-image: linear-gradient(bottom, rgb(0,0,0) 7%, rgb(56,56,56) 54%, rgb(71,71,71) 55%);
+
+    background-image: -o-linear-gradient(bottom, rgb(0,0,0) 7%, rgb(56,56,56) 54%, rgb(71,71,71) 55%);
+
+    background-image: -moz-linear-gradient(bottom, rgb(0,0,0) 7%, rgb(56,56,56) 54%, rgb(71,71,71) 55%);
+
+    background-image: -webkit-linear-gradient(bottom, rgb(0,0,0) 7%, rgb(56,56,56) 54%, rgb(71,71,71) 55%);
+
+    background-image: -ms-linear-gradient(bottom, rgb(0,0,0) 7%, rgb(56,56,56) 54%, rgb(71,71,71) 55%);
+
+
+
+    background-image: -webkit-gradient(
+
+        linear,
+
+        left bottom,
+
+        left top,
+
+        color-stop(0.07, rgb(0,0,0)),
+
+        color-stop(0.54, rgb(56,56,56)),
+
+        color-stop(0.55, rgb(71,71,71))
+
+    );
+
+
+
+}
+
+.ui-bar-f, 
+
+.ui-bar-f input, 
+
+.ui-bar-f select, 
+
+.ui-bar-f textarea, 
+
+.ui-bar-f button {
+
+	font-family: Helvetica, Arial, sans-serif /*{a-bar-font}*/;
+
+}
+
+.ui-bar-f .ui-link-inherit {
+
+	color: 					#fff /*{a-bar-color}*/;
+
+}
+
+.ui-bar-f .ui-link {
+
+	color: 					#7cc4e7 /*{global-link-color}*/;
+
+	font-weight: bold;
+
+}
+
+.ui-body-f {
+
+	border: 1px solid 		#605e5c /*{a-body-border}*/;
+
+	
+
+	color: 					#474747 /*{a-body-color}*/;
+
+	 text-shadow: 0 /*{a-body-shadow-x}*/ 0 /*{a-body-shadow-y}*/ 0 /*{a-body-shadow-radius}*/ #000 /*{a-body-shadow-color}*/;
+
+	font-weight: normal;
+
+}
+
+.ui-body-f,
+
+.ui-body-f input,
+
+.ui-body-f select,
+
+.ui-body-f textarea,
+
+.ui-body-f button {
+
+	font-family: Helvetica, Arial, sans-serif /*{a-body-font}*/;
+
+}
+
+.ui-body-f .ui-link-inherit {
+
+	color: 					#fff /*{a-body-color}*/;
+
+}
+
+.ui-body-f .ui-link {
+
+	color: 					#2489CE /*{global-link-color}*/;
+
+	font-weight: bold;
+
+}
+
+.ui-br {
+
+	border-bottom: rgb(130,130,130);
+
+	border-bottom: rgba(130,130,130,.3);
+
+	border-bottom-width: 1px;
+
+	border-bottom-style: solid;
+
+}
+
+.ui-btn-up-f {
+
+	border: 1px solid 		#fff /*{a-bup-border}*/;
+
+	background: 			#fff /*{a-bup-background-color}*/;
+
+	font-weight: bold;
+
+	color: 					#474747 /*{a-bup-color}*/;
+
+	text-shadow: 0 /*{a-bup-shadow-x}*/ 0 /*{a-bup-shadow-y}*/ 1px /*{a-bup-shadow-radius}*/ #000 /*{a-bup-shadow-color}*/;
+
+	background-image: linear-gradient(bottom, #FFFFFF 82%, #E3E3E3 89%, #949494 97%);
+
+        background-image: -o-linear-gradient(bottom, #FFFFFF 82%, #E3E3E3 89%, #949494 97%);
+
+        background-image: -moz-linear-gradient(bottom, #FFFFFF 82%, #E3E3E3 89%, #949494 97%);
+
+        background-image: -webkit-linear-gradient(bottom, #FFFFFF 82%, #E3E3E3 89%, #949494 97%);
+
+        background-image: -ms-linear-gradient(bottom, #FFFFFF 82%, #E3E3E3 89%, #949494 97%);
+
+
+
+        background-image: -webkit-gradient(
+
+                linear,
+
+                left bottom,
+
+                left top,
+
+                color-stop(0.82, #FFFFFF),
+
+                color-stop(0.89, #E3E3E3),
+
+                color-stop(0.97, #949494)
+
+        );
+
+
+
+}
+
+.ui-btn-up-f a.ui-link-inherit {
+
+	color: 					#474747 /*{a-bup-color}*/;
+
+}
+
+.ui-btn-hover-f {
+
+	border: 1px solid 		#fff /*{a-bup-border}*/;
+
+	background: 			#fff /*{a-bup-background-color}*/;
+
+	font-weight: bold;
+
+	color: 					#474747 /*{a-bup-color}*/;
+
+	text-shadow: 0 /*{a-bup-shadow-x}*/ 0 /*{a-bup-shadow-y}*/ 1px /*{a-bup-shadow-radius}*/ #000 /*{a-bup-shadow-color}*/;
+
+	background-image: linear-gradient(bottom, #FFFFFF 82%, #E3E3E3 89%, #949494 97%);
+
+        background-image: -o-linear-gradient(bottom, #FFFFFF 82%, #E3E3E3 89%, #949494 97%);
+
+        background-image: -moz-linear-gradient(bottom, #FFFFFF 82%, #E3E3E3 89%, #949494 97%);
+
+        background-image: -webkit-linear-gradient(bottom, #FFFFFF 82%, #E3E3E3 89%, #949494 97%);
+
+        background-image: -ms-linear-gradient(bottom, #FFFFFF 82%, #E3E3E3 89%, #949494 97%);
+
+
+
+        background-image: -webkit-gradient(
+
+                linear,
+
+                left bottom,
+
+                left top,
+
+                color-stop(0.82, #FFFFFF),
+
+                color-stop(0.89, #E3E3E3),
+
+                color-stop(0.97, #949494)
+
+        );
+
+}
+
+.ui-btn-hover-f a.ui-link-inherit {
+
+	color: 					#474747 /*{a-bhover-color}*/;
+
+}
+
+.ui-btn-down-f {
+
+	border: 1px solid 		#fff /*{a-bup-border}*/;
+
+	background: 			#E3E3E3 /*{a-bup-background-color}*/;
+
+	font-weight: bold;
+
+	color: 					#474747 /*{a-bup-color}*/;
+
+	text-shadow: 0 /*{a-bup-shadow-x}*/ 0 /*{a-bup-shadow-y}*/ 1px /*{a-bup-shadow-radius}*/ #000 /*{a-bup-shadow-color}*/;
+
+	background-image: linear-gradient(bottom, #FFFFFF 0%, #E3E3E3 89%, #949494 97%);
+
+        background-image: -o-linear-gradient(bottom, #FFFFFF 0%, #E3E3E3 89%, #949494 97%);
+
+        background-image: -moz-linear-gradient(bottom, #FFFFFF 0%, #E3E3E3 89%, #949494 97%);
+
+        background-image: -webkit-linear-gradient(bottom, #FFFFFF 0%, #E3E3E3 89%, #949494 97%);
+
+        background-image: -ms-linear-gradient(bottom, #FFFFFF 0%, #E3E3E3 89%, #949494 97%);
+
+
+
+        background-image: -webkit-gradient(
+
+                linear,
+
+                left bottom,
+
+                left top,
+
+                color-stop(0, #FFFFFF),
+
+                color-stop(0.89, #E3E3E3),
+
+                color-stop(0.97, #949494)
+
+        );
+
+
+
+}
+
+.ui-btn-down-f a.ui-link-inherit {
+
+	color: 					#474747 /*{a-bdown-color}*/;
+
+}
+
+.ui-btn-up-f,
+
+.ui-btn-hover-f,
+
+.ui-btn-down-f {
+
+	font-family: Helvetica, Arial, sans-serif /*{a-button-font}*/;
+
+	text-decoration: none;
+
+}
+
+
+
+.ui-collapsible-heading a {
+
+    text-align: center;
+
+}
+
+.ui-collapsible-heading {
+
+    padding-left: 15px;
+
+    padding-right: 15px
+
+}
+
+.ui-collapsible-content {
+
+    padding-left: 15px;
+
+    padding-right: 15px;
+
+    margin: 0 7px;
+
+    padding: 0 16px;
+
+}
+
+     
+
+
+

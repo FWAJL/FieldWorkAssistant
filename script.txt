@@ -1,0 +1,119 @@
+function auto_load()
+
+				{
+
+					var i=0;
+
+					var id_string=<?php echo json_encode($id_array); ?>;
+
+					var str_len=id_string.length;
+
+					// var id_arr=new array();
+
+					alert(id_string);
+
+				    for(i=0;i<str_len;i++)
+
+				    {
+
+				    	if(i==0)
+
+						{
+
+							for(var j=0;j<18;j++)
+
+							{
+
+								if(document.getElementById("common_checkboxid["+j+"]").value==id_string[0])
+
+								{
+
+									document.getElementById("common_checkboxid["+j+"]").checked=true;
+
+								}
+
+								
+
+							}
+
+							
+
+						}
+
+				    	if(i==1)
+
+						{
+
+							for(var j=19;j<28;j++)
+
+							{
+
+								if(document.getElementById("common_checkboxid["+j+"]").value==id_string[1])
+
+								{
+
+									document.getElementById("common_checkboxid["+j+"]").checked=true;
+
+								}
+
+								
+
+							}
+
+						}
+
+						if(i==2)
+
+						{
+
+							for(var j=29;j<89;j++)
+
+							{
+
+								if(document.getElementById("common_checkboxid["+j+"]").value==id_string[2])
+
+								{
+
+									document.getElementById("common_checkboxid["+j+"]").checked=true;
+
+								}
+
+								
+
+							}
+
+							
+
+						}
+
+				    	if(i==3)
+
+				    	{
+
+				    		for(var j=90;j<96;j++)
+
+							{
+
+								if(document.getElementById("common_checkboxid["+j+"]").value==id_string[3])
+
+								{
+
+									document.getElementById("common_checkboxid["+j+"]").checked=true;
+
+								}
+
+								
+
+							}
+
+				    		
+
+				    	}					    	
+
+				    }
+
+					
+
+				}
+
+			</script>

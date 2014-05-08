@@ -21,13 +21,13 @@ Helpers to push updates:
 
 To push updates, use the following in order:
 
-git status
-git add -A 
-git status 
-git commit -m "some comment" 
-git push (login required) 
-git tag v[Major].[Minor].[Revision].[Build] 
-git push --tags (login required)
+- git status
+- git add -A 
+- git status 
+- git commit -m "some comment" 
+- git push (login required) 
+- git tag v[Major].[Minor].[Revision].[Build] 
+- git push --tags (login required)
 
 ### Having issues, questions?
 Report here: https://github.com/FWAJL/FieldWorkAssistant/issues

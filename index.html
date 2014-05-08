@@ -40,13 +40,25 @@
 
 <ul>
 <li>PM or Project managers who can:
-&gt; use all functionalities of the tool within their assigned projects.</li>
+
+<ul>
+<li>use all functionalities of the tool within their assigned projects.</li>
+</ul>
+</li>
 <li>Field worker:
-&gt; view map to find locations
-&gt; fill forms
-&gt; mark a location by giving a label and button click</li>
+
+<ul>
+<li>view map to find locations</li>
+<li>fill forms</li>
+<li>mark a location by giving a label and button click</li>
+</ul>
+</li>
 <li>Software developer:
-&gt; Test Stage site to validate software updates or debug on real data (read only rights)</li>
+
+<ul>
+<li>Test Stage site to validate software updates or debug on real data (read only rights)</li>
+</ul>
+</li>
 </ul><h3>
 <a name="pushing-update-to-repository" class="anchor" href="#pushing-update-to-repository"><span class="octicon octicon-link"></span></a>Pushing update to repository</h3>
 
@@ -59,13 +71,14 @@ Helpers to push updates:</p>
 
 <p>To push updates, use the following in order:</p>
 
-<p>git status
+<pre><code>git status
 git add -A 
 git status 
 git commit -m "some comment" 
 git push (login required) 
 git tag v[Major].[Minor].[Revision].[Build] 
-git push --tags (login required)</p>
+git push --tags (login required)
+</code></pre>
 
 <h3>
 <a name="having-issues-questions" class="anchor" href="#having-issues-questions"><span class="octicon octicon-link"></span></a>Having issues, questions?</h3>

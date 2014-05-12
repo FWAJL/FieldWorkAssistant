@@ -61,7 +61,16 @@
     	<li><a href="index.php?place_g_fac=1&sel_proj=1&pid='.$_REQUEST['pid'].'">This Project</a></li>
 		<li><a href="index.php?place_g_loc=1&this_proj_all_locs=1&pid='.$_REQUEST['pid'].'">All Locations for this Project</a></li>
     </ul>';
-     }	 
+     }	
+if(isset($_REQUEST['place_g_fac']))
+
+				{
+include("place_g_fac.php");
+				print "<script>";
+				print "</script>";
+        			exit;
+				 
+				}	 
 	 ?>
     
 </li>

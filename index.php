@@ -1097,15 +1097,15 @@ include('left_menu1.php');
 
 				}
 				
-					elseif(isset($_REQUEST['place_g_fac']))
+				/*	elseif(isset($_REQUEST['place_g_fac']))
 
 				{
 
 				 include('place_g_fac.php');
-
-				 exit;
+	
+        			exit;
 				 
-				}
+				}*/
 
 				
 				elseif(isset($_REQUEST['list_analytes']))

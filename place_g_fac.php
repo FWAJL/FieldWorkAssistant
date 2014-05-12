@@ -114,7 +114,7 @@ $min_max_results = $min_max->fetch();
 
 	
 // Map Marker Update
-
+/*
  if(isset($_REQUEST['oldlat']))
 
   {
@@ -135,7 +135,7 @@ echo "<meta http-equiv='refresh' content='0;url=index.php?place_g_fac=1&all_proj
 
 exit;
 		
-}
+}*/
 // End Marker Update
 	  
 // Show multiple locations
@@ -149,6 +149,7 @@ if(!isset($_REQUEST['pid']))
 	$fac_name[$i]=$results[$i]['facility_nam'];
 	$fac_id[$i]=$results[$i]['facility_id_num'];
 	$proj_id[$i]=$results[$i]['project_id'];
+	$proj_name[$i]=$results[$i]['project_name'];
     }
 	$count_fac=$rows;
 	$center_lat=$center_lat;
@@ -160,6 +161,7 @@ if(!isset($_REQUEST['pid']))
 	$fac_name[0]=$results['facility_nam'];
 	$fac_id[0]=$results['facility_id_num'];
 	$proj_id[0]=$results['project_id'];
+	$proj_name[0]=$results['project_name'];
 	$count_fac=1;
 	$center_lat=$center_lat;
 	$center_long=$center_long;
@@ -172,7 +174,8 @@ if(!isset($_REQUEST['pid']))
                       ?>
                         
 <!--Shows all locations (alllocs) -->
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false"></script>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false&libraries=drawing"></script>
+<script src="//google-maps-utility-library-v3.googlecode.com/svn/trunk/geolocationmarker/src/geolocationmarker-compiled.js"></script>
 <script type="text/javascript">
 var points=[];
 var r_start_lat;
@@ -181,7 +184,42 @@ var r_end_lat;
 var r_end_lng;
 var r_point;
 var map;
+var pol_array;
+var points=[];
+var r_start_lat;
+var r_start_lng;
+var r_end_lat;
+var r_end_lng;
+var r_point;
+var id='<?php echo $_REQUEST['pid'];?>';
+var dragend_pos;
+var bounds = new google.maps.LatLngBounds();
+var titleid;
+var proj_name=new Array();
+var drawingManager;
 window.onload = function () {
+
+  /*if(navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var pos = new google.maps.LatLng(position.coords.latitude,
+                                       position.coords.longitude);
+alert("Your Current Location is: pos");
+    }, function() {
+      handleNoGeolocation(true);
+    });
+  } else {
+    handleNoGeolocation(false);
+  }
+  
+  
+  function handleNoGeolocation(errorFlag) {
+  if (errorFlag) {
+    var content = 'Error: The Geolocation service failed.';
+  } else {
+    var content = 'Error: Your browser doesn\'t support geolocation.';
+  }
+  
+}*/
 
 	 var fac_lat=new Array();
 
@@ -194,6 +232,7 @@ window.onload = function () {
 	var proj_id=new Array();
 
 	var markers = new Array();
+	
 	
 	var totalelem=0;
 	
@@ -223,6 +262,8 @@ window.onload = function () {
 	
 	proj_id[<?php echo $i; ?>]='<?php echo $proj_id[$i]; ?>';
 	
+	proj_name[<?php echo $i; ?>]='<?php echo $proj_name[$i]; ?>';
+	
 	markers[<?php echo $i; ?>]='<?php echo $fac_lat[$i]; ?>, <?php echo $fac_long[$i]; ?>';
 
     <?php } ?>
@@ -230,14 +271,51 @@ window.onload = function () {
    var latlng = new google.maps.LatLng(<?php echo $center_lat;?>,<?php echo $center_long; ?>);
 
     map = new google.maps.Map(document.getElementById('mapCanvas'), {
-
        center: latlng,
-
         zoom: 12,
-
         mapTypeId: google.maps.MapTypeId.ROADMAP
 
     });
+  drawingManager = new google.maps.drawing.DrawingManager({
+    drawingMode: google.maps.drawing.OverlayType.POLYGON,
+    drawingControl: true,
+    drawingControlOptions: {
+      position: google.maps.ControlPosition.TOP_CENTER,
+      drawingModes: [
+        google.maps.drawing.OverlayType.POLYGON
+      ]
+    },
+	polygonOptions: {
+      zIndex: 1,
+	  editable:true
+    }
+  });
+  drawingManager.setMap(map);
+    google.maps.event.addListener(drawingManager,'polygoncomplete',function(polygon) {
+   respol=polygon;
+   //drawingManager.setMap(null);
+  	console.log(polygon.getPath().getArray());
+
+	for(var k=0;k<polygon.getPath().getLength();k++)
+	{
+	polygon.getPath().getAt(k);
+	var lat=polygon.getPath().getAt(k).lat();
+	var lng=polygon.getPath().getAt(k).lng();
+		}
+	pol_array=polygon.getPath().getArray()+"  ";
+
+google.maps.event.addListener(polygon.getPath(), 'insert_at', function() {
+    	console.log(polygon.getPath().getArray());
+
+	for(var k=0;k<polygon.getPath().getLength();k++)
+	{
+	polygon.getPath().getAt(k);
+	var lat=polygon.getPath().getAt(k).lat();
+	var lng=polygon.getPath().getAt(k).lng();
+	}
+	pol_array=polygon.getPath().getArray()+"  ";
+});
+  });
 
 	 for (i = 0; i <fac_lat.length; i++) {
 
@@ -274,8 +352,8 @@ window.onload = function () {
 	 google.maps.event.addListener(marker, 'dragend', function(a) {
 
         console.log(a);
-
-        var div = document.createElement('div');
+dragend_pos=a;
+       var div = document.createElement('div');
 
        /* div.innerHTML = a.latLng.lat().toFixed(6) + ', ' + a.latLng.lng().toFixed(6);*/
 
@@ -289,22 +367,23 @@ window.onload = function () {
 
 		var titlelong =this.titlelong;
 
-		var titleid =this.titleid;
+		titleid =this.titleid;
 
-		document.getElementById('Status').innerHTML=div.innerHTML;
+		document.getElementById('Status').innerHTML=a.latLng.lat().toFixed(6) + ', ' + a.latLng.lng().toFixed(6);;
 
 		document.getElementById('currentlat').value=currentLat;
 
 		document.getElementById('currentlng').value=currentLng;
 
-	    document.getElementById('oldlat').value=titlelat;
+	   document.getElementById('oldlat').value=titlelat;
 
-	    document.getElementById('oldlng').value=titlelong;
+	 document.getElementById('oldlng').value=titlelong;
 
-		document.getElementById('local_id').value=titleid;
-	
+	document.getElementById('local_id').value=titleid;
+
     });
 
+	
 	var infowindow = new google.maps.InfoWindow();
 
 	google.maps.event.addListener(marker, 'click', function() {
@@ -325,20 +404,49 @@ window.onload = function () {
 map.fitBounds(bounds);
 	 
 	 }
-	 var searchUrl = 'showxml.php';
+   var searchUrl = 'showxml.php?id='+id;
        downloadUrl(searchUrl, function(data) {	   
        var xml = parseXml(data);
-	   console.log(xml);
        var markerNodes = xml.documentElement.getElementsByTagName("marker");
        var bounds = new google.maps.LatLngBounds();
        for (var i = 0; i < markerNodes.length; i++) {
        var latlng = markerNodes[i].getAttribute("position");	 
-	   
 	drawpolygon(latlng);
     }
     });
 
 };
+function update()
+	{
+	alert(titleid);
+		$.ajax({
+    type: "POST",
+    url: "update.php",
+    data: 'lat='+dragend_pos.latLng.lat()+'&lng='+dragend_pos.latLng.lng()+'&pid='+titleid ,
+    cache: false,
+    success: function()
+    {
+	alert("Successfully updated");
+	}
+	});
+	}
+  function boundaries()
+{
+var placename=document.getElementById('b_name').value;
+console.log(placename);
+ $.ajax({
+    type: "POST",
+    url: "insert.php",
+    data: 'lat='+pol_array+'&placename='+placename+'&pid='+'<?php echo $_REQUEST['pid']; ?>',
+    cache: false,
+    success: function()
+    {
+	alert("Boundary successfully added");
+	}
+	});
+}
+
+
 function drawpolygon(latlng)
 {
 points=[];
@@ -374,6 +482,7 @@ points.push(r_point);
 showpolygon(r_start,r_end,points);
 
 }
+
 function showpolygon(r_start,r_end,points)
 {
  var coords=[];
@@ -383,7 +492,6 @@ for(var i=0;i<points.length;i++)
 coords.push(points[i]);
 }
 	coords.push(r_end);
-
 	var polygon = new google.maps.Polygon({
     paths: coords,
     strokeColor: '#FF0000',
@@ -393,9 +501,32 @@ coords.push(points[i]);
     fillOpacity: 0.35
   });
   polygon.setMap(map);
-  console.log(polygon);
+  for(var t=0;t<polygon.getPath().getLength();t++)
+  {
+  console.log(polygon.getPath().getLength());
+   bounds.extend(polygon.getPath().getAt(t));
+   map.fitBounds(bounds);
+  }
 }
+$(document).ready(function(){
 
+$("#projselect").change(function() {
+var selproject=$('#projselect option:selected').val();
+alert($( "#projselect option:selected" ).val());
+	
+	  var searchUrl = 'selproj.php?proj='+selproject;
+       downloadUrl(searchUrl, function(data) {	   
+       var xml = parseXml(data);
+       var markerNodes = xml.documentElement.getElementsByTagName("marker");
+       var bounds = new google.maps.LatLngBounds();
+       for (var i = 0; i < markerNodes.length; i++) {
+       var lat = markerNodes[i].getAttribute("lat");	 
+       var lng = markerNodes[i].getAttribute("lng");	 
+map.setCenter(new google.maps.LatLng(lat,lng));
+    }
+    });
+});
+});
 
   function downloadUrl(url, callback) {
       var request = window.ActiveXObject ?
@@ -440,7 +571,72 @@ coords.push(points[i]);
 
 <!--Breadcrumb -->
 
-<h2 id="com_name"> Breadcrumb.
+<h2 id="com_name"> Breadcrumb>
+<?php if(isset($_REQUEST['pid'])) { echo $row4['project_name']; }
+else {
+if(isset($_REQUEST['all_proj'])) 
+{
+ $sql5=mysql_query("SELECT project_name FROM project_info");
+while($row=mysql_fetch_array($sql5))
+{?>
+	<?php $arr[]=$row['project_name'];
+
+}
+?>
+<select id="projselect">
+<option>
+All projects</option>
+<?php
+for($p=0;$p<count($arr);$p++)
+{
+?>
+<option value="<?php echo $arr[$p];?>">
+<?php
+echo $arr[$p];
+?>
+</option>
+<?php
+}
+?>
+
+</select>
+<?php
+
+}
+else{
+
+if(isset($_REQUEST['sel_projs'])) 
+{
+$sqlquery=mysql_query("SELECT project_name FROM project_info WHERE visible='-1'");
+while($rows=mysql_fetch_array($sqlquery))
+{
+?>
+	<?php $array[]=$rows['project_name'];
+}
+?>
+<select id="projselect">
+<option>
+Selected projects</option>
+<?php
+for($q=0;$q<count($array);$q++)
+{
+?>
+<option value="<?php echo $array[$q];?>">
+<?php
+echo $array[$q];
+?>
+</option>
+<?php
+}
+?>
+
+</select>
+<?php
+}
+}
+}
+?>
+ 
 
  </h2>
 
@@ -464,7 +660,7 @@ coords.push(points[i]);
 
   <!-- <b>Closest matching address:</b>-->
 
-  <form action="" method="post">
+ 
 
     <input type="hidden" name="local_id" id="local_id"/>
 
@@ -476,12 +672,27 @@ coords.push(points[i]);
 
     <input type="hidden" name="currentlng" id="currentlng"/>
 
-    <input type="submit" class="submit" value=""/>
+    <input type="button" class="submit" value="" onclick="update()"/>
 
-  </form>
+
 
 </div>
+ <table  style="line-height:40px" width="50%">
 
+
+    <tr>
+
+      <td id="doc_lib">Boundary Name:</td>
+
+      <td align="right"><input type="text"  name="b_name" id="b_name" class="edit_com" /></td>
+
+	  <td align="right"><button  id="submit" value="Add New Boundary" onclick="boundaries();" >Save</button></td>
+
+    </tr>
+ 
+    
+
+  </table>
 <?php
 
  	}

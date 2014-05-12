@@ -1,13 +1,10 @@
 <?php
-	
-$pid=$_GET['pid'];
-//echo $_REQUEST['cbox'];
+$project=$_GET['proj'];
 $dom = new DOMDocument("1.0");
 $node = $dom->createElement("string");
 $parentnode = $dom->appendChild($node);
-$connect=mysql_connect("localhost","root","pass");
-$db=mysql_select_db("fieldwork",$connect);
-$query =("SELECT * FROM boundary where visible='1' and project_id='$pid'"); 
+include("config.php");
+$query =("SELECT * FROM project_info WHERE project_name='$project'"); 
 $result = mysql_query($query);
 if (!$result) {
   die("Invalid query: " . mysql_error());
@@ -18,7 +15,9 @@ header("Content-type: text/xml");
 while ($row = @mysql_fetch_assoc($result)){
   $node = $dom->createElement("marker");
   $info = $parentnode->appendChild($node);
-  $info->setAttribute("position", convert_uudecode($row['position']));
+  $info->setAttribute("lat", $row['facility_lat']);
+  $info->setAttribute("lng", $row['facility_long']);
+
   }
 echo $dom->saveXML();
 }
